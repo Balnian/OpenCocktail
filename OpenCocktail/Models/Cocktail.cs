@@ -10,6 +10,7 @@ namespace OpenCocktail.Models
     {
 
         public long Id { get; set; }
+
         [Display(Name = "Nom")]
         [StringLength(50), Required]
         [RegularExpression(@"^((?!^Name$)[-a-zA-Z0-9 àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_'])+$", ErrorMessage = "Caractères illégaux.")]
