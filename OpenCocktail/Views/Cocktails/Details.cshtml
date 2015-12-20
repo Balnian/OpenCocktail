@@ -1,0 +1,60 @@
+﻿@model OpenCocktail.Models.Cocktail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cocktail</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            Recette:
+        </dt>
+        <dd>
+            @{
+                List<string> test = new List<string>();
+                test.Add("5oz - chien");
+                test.Add("1/4cup - chat");
+                test.Add("6g - Moufette");
+                test.Add("6tps - Rats");
+                test.Add("7oz - Mouette");
+
+                foreach (var element in test)
+                {
+                    Html.DisplayText(element);
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
