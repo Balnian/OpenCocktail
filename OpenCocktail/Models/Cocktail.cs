@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,10 +8,22 @@ namespace OpenCocktail.Models
 {
     public class Cocktail
     {
+
         public long Id { get; set; }
+        [Display(Name = "Nom")]
+        [StringLength(50), Required]
+        [RegularExpression(@"^((?!^Name$)[-a-zA-Z0-9 àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_'])+$", ErrorMessage = "Caractères illégaux.")]
         public String Nom { get; set; }
+
+        [Display(Name = "Description")]
+        [StringLength(50), Required]
+        [RegularExpression(@"^((?!^Name$)[-a-zA-Z0-9 àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_'])+$", ErrorMessage = "Caractères illégaux.")]
         public String Description { get; set; }
+
+        [Display(Name = "Image")]
         public String Image { get; set; }
+
+        private ImageGUIDReference ImageReference;
 
     }
 
