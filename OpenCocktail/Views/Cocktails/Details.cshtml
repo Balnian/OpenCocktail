@@ -8,7 +8,7 @@
 
 <div>
     <h4>Cocktail</h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Nom)
@@ -37,24 +37,19 @@
         <dt>
             Recette:
         </dt>
-        <dd>
-            @{
-                List<string> test = new List<string>();
-                test.Add("5oz - chien");
-                test.Add("1/4cup - chat");
-                test.Add("6g - Moufette");
-                test.Add("6tps - Rats");
-                test.Add("7oz - Mouette");
-
-                foreach (var element in test)
-                {
-                    Html.DisplayText(element);
-                }
+        
+            @{List<string> ListeIngredients = (List<string>)ViewData["ingrlist"];}
+            @foreach (var item in ListeIngredients)
+            {
+                <dd>
+                    @item   
+                </dd>
             }
-        </dd>
+            
+        
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+
     @Html.ActionLink("Back to List", "Index")
 </p>

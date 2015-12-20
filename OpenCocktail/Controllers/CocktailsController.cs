@@ -22,7 +22,20 @@ namespace OpenCocktail.Controllers
         // GET: /Cocktails/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Cocktails cock = new Cocktails(Session["DB"].ToString());
+            cock.SelectByID(id);
+
+            //////////////////////////////////////////////////////////TEMPORAIRE
+            List<string> ListeIngredients = new List<string>();
+            ListeIngredients.Add("5oz - chien");
+            ListeIngredients.Add("1/4cup - chat");
+            ListeIngredients.Add("6g - Moufette");
+            ListeIngredients.Add("6tps - Rats");
+            ListeIngredients.Add("7oz - Mouette");
+            //////////////////////////////////////////////////////////
+
+            ViewData["ingrlist"] = ListeIngredients;
+            return View(cock.Cocktail);
         }
 
         //
