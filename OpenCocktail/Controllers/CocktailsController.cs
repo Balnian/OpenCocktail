@@ -25,16 +25,20 @@ namespace OpenCocktail.Controllers
             Cocktails cock = new Cocktails(Session["DB"].ToString());
             cock.SelectByID(id);
 
+            Ingredients ingrs = new Ingredients(Session["DB"].ToString());
+            ingrs.SelectIngredientsByID(id);
+            List<Ingredient> ingr = new List<Ingredient>(ingrs.ToList());
+
             //////////////////////////////////////////////////////////TEMPORAIRE
-            List<string> ListeIngredients = new List<string>();
+            /*<string> ListeIngredients = new List<string>();
             ListeIngredients.Add("5oz - chien");
             ListeIngredients.Add("1/4cup - chat");
             ListeIngredients.Add("6g - Moufette");
             ListeIngredients.Add("6tps - Rats");
-            ListeIngredients.Add("7oz - Mouette");
+            ListeIngredients.Add("7oz - Mouette");*/
             //////////////////////////////////////////////////////////
 
-            ViewData["ingrlist"] = ListeIngredients;
+            ViewData["ingrlist"] = ingr;
             return View(cock.Cocktail);
         }
 

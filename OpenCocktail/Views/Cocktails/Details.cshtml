@@ -1,4 +1,6 @@
-﻿@model OpenCocktail.Models.Cocktail
+﻿@using OpenCocktail.Models
+@model OpenCocktail.Models.Cocktail
+        
 
 @{
     ViewBag.Title = "Details";
@@ -38,11 +40,11 @@
             Recette:
         </dt>
         
-            @{List<string> ListeIngredients = (List<string>)ViewData["ingrlist"];}
+            @{List<Ingredient> ListeIngredients = (List<Ingredient>)ViewData["ingrlist"];}
             @foreach (var item in ListeIngredients)
             {
                 <dd>
-                    @item   
+                    @item.Nom
                 </dd>
             }
             

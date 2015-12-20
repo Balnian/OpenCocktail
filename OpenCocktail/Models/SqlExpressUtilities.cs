@@ -318,7 +318,30 @@ namespace SqlExpressUtilities
             }
             return false;
         }
+        ////////////////////////////////////////////////////////////////
+        public bool SelectIngredientsByID(long ID)
+        {
+            return SelectIngredientsByID(ID.ToString());
+        }
+        // Extraire l'enregistrement d'id ID
+        public bool SelectIngredientsByID(String ID)
+        {
+            //string sql = "SELECT * FROM " + SQLTableName + " WHERE ID = " + ID;
 
+            string sql = "select ingredients.Nom, ingredients.Description from Composants " +
+            "inner join Cocktails on Cocktails.Id = Composants.Id_Cocktail " +
+            "inner join Ingredients on Ingredients.Id = Composants.Id_Ingredient " +
+            "where cocktails.Id = "+ID;
+
+            QuerySQL(sql);
+            if (reader != null)
+            {
+                Next();
+                return true;
+            }
+            return false;
+        }
+        ////////////////////////////////////////////////////////////////
         public bool SelectLast()
         {
             string sql = "SELECT TOP 1 * FROM " + SQLTableName + " ORDER BY ID DESC";
