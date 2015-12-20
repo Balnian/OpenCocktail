@@ -42,23 +42,26 @@ namespace OpenCocktail.Controllers
         // GET: /Cocktails/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Cocktail());
         }
 
         //
         // POST: /Cocktails/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Cocktail collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                Cocktails cock = new Cocktails(Session["DB"].ToString());
+                cock.Cocktail = collection;
+                cock.Cocktail.UpLoadPoster(Request);
+                cock.Insert();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(collection);
             }
         }
 

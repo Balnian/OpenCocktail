@@ -114,7 +114,9 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\Ingredients\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -126,6 +128,7 @@
     </Compile>
     <Compile Include="Models\Cocktail.cs" />
     <Compile Include="Models\ImageGUIDReference.cs" />
+    <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\SqlExpressUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,9 +143,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Cocktails\default.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ImgPreview.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -166,6 +171,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Cocktails\Index.cshtml" />
     <Content Include="Views\Cocktails\Details.cshtml" />
+    <Content Include="Views\Cocktails\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

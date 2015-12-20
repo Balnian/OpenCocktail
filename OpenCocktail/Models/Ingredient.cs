@@ -6,7 +6,8 @@ using System.Web;
 
 namespace OpenCocktail.Models
 {
-    public class Cocktail
+
+    public class Ingredient
     {
 
         public long Id { get; set; }
@@ -21,48 +22,27 @@ namespace OpenCocktail.Models
         [RegularExpression(@"^((?!^Name$)[-a-zA-Z0-9 àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_'])+$", ErrorMessage = "Caractères illégaux.")]
         public String Description { get; set; }
 
-        [Display(Name = "Image")]
-        public String Image { get; set; }
-
-        private ImageGUIDReference ImageReference;
-
-        public Cocktail()
+        public Ingredient()
         {
             Nom = "";
             Description = "";
-            Image = "";
-            ImageReference = new ImageGUIDReference(@"/Images/Cocktails/",@"default.png");
         }
-
-        public String GetPosterURL()
-        {
-            return ImageReference.GetImageURL(Image);
-        }
-
-        public void UpLoadPoster(HttpRequestBase Request)
-        {
-            Image = ImageReference.UpLoadImage(Request, Image);
-        }
-
-        public void RemovePoster()
-        {
-            ImageReference.Remove(Image);
-        } 
 
     }
 
-    public class Cocktails:SqlExpressUtilities.SqlExpressWrapper
+    public class Ingredients : SqlExpressUtilities.SqlExpressWrapper
     {
-        public Cocktail Cocktail { get; set; }
+        public Ingredient Ingredient { get; set; }
 
-        public Cocktails(String conn):base(conn)
+        public Ingredients(String conn)
+            : base(conn)
         {
-            Cocktail = new Cocktail();
+            Ingredient = new Ingredient();
         }
 
-        public Cocktails()
+        public Ingredients()
         {
-            Cocktail = new Cocktail();
+            Ingredient = new Ingredient();
         }
 
         public List<Cocktail> ToList()
@@ -76,4 +56,5 @@ namespace OpenCocktail.Models
             return Cocktails_list;
         }
     }
+
 }
