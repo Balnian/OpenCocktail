@@ -34,7 +34,12 @@ namespace OpenCocktail.Models
 
         public Cocktails(String conn):base(conn)
         {
+            Cocktail = new Cocktail();
+        }
 
+        public Cocktails()
+        {
+            Cocktail = new Cocktail();
         }
 
         public List<Cocktail> ToList()
