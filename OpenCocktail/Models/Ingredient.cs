@@ -50,8 +50,8 @@ namespace OpenCocktail.Models
         public List<Ingredient> ToList()
         {
             List<object> list = this.RecordsList();
-            List<Ingredient> Cocktails_list = new List<Ingredient>();
-            foreach (Ingredient Cocktail in list)
+            List<Ingredient> Ingredients_list = new List<Ingredient>();
+            foreach (Ingredient Ingredient in list)
             {
                 Ingredients_list.Add(Ingredient);
             }
