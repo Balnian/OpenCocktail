@@ -141,6 +141,10 @@ namespace OpenCocktail.Controllers
                         comp.Composant = compList.Where(X => X.Id_Ingredient == long.Parse(item)).First();
                         comp.Composant.Qte = long.Parse(collection[item.ToString()].ToString());
                         comp.Update();
+                        foreach (var todel in compList.Where(X => X.Id_Ingredient == long.Parse(item)).Reverse())
+                        {
+                            compList.Remove(todel);
+                        }
                     }
                     else
                     {
@@ -151,6 +155,12 @@ namespace OpenCocktail.Controllers
                         comp.Composant.Qte = long.Parse(collection[ing.Ingredient.Id.ToString()].ToString());
                         comp.Insert();
                     }
+                }
+                //delete remaining composants
+                foreach (var item in compList)
+                {
+                    comp.DeleteRecordByID(item.Id);
+ 
                 }
                     
                 // TODO: Add update logic here
@@ -198,6 +208,7 @@ namespace OpenCocktail.Controllers
 
                     //Delete Cocktail
                     cock.Cocktail = collection;
+                    cock.Cocktail.RemovePoster();
                     cock.DeleteRecordByID(id);
 
                     
