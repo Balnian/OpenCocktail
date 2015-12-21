@@ -33,7 +33,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <div class="col-md-10">
+                <img id="new_image" src="@Url.Content("~" + Model.GetPosterURL())" class="poster" />
+                <input type="file" name="FU_Image" id="FU_Image" style="display:none;" onchange="PreLoadImage();" />                
+            </div>
         </dd>
 
         <dt>

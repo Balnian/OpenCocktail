@@ -132,7 +132,7 @@ namespace OpenCocktail.Controllers
                 List<Composant> compList = comp.ToList();
 
                 //if (collection["Ingredients"] != null)
-                //if(collection["Ingredients"].ToString().Split(',').Length>0)
+                if(collection["Ingredients"].ToString().Split(',').Length>0)
                 foreach (var item in collection["Ingredients"].ToString().Split(','))
                 {
                     //Si  existe déjà update sinon insert
@@ -169,7 +169,7 @@ namespace OpenCocktail.Controllers
             }
             catch (Exception ex)
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
