@@ -130,6 +130,7 @@ namespace OpenCocktail.Controllers
                 comp.SelectByFieldName("Id_Cocktail",cock.Cocktail.Id);
                 List<Composant> compList = comp.ToList();
 
+                if(collection["Ingredients"].ToString().Split(',').Length>0)
                 foreach (var item in collection["Ingredients"].ToString().Split(','))
                 {
                     //Si  existe déjà update sinon insert
@@ -187,7 +188,7 @@ namespace OpenCocktail.Controllers
                     Composants comp = new Composants(Session["DB"].ToString());
                     comp.SelectByFieldName("Id_Cocktail", cock.Cocktail.Id);
                     List<Composant> compList = comp.ToList();
-
+                    if(compList.Count>0)
                     foreach (var item in compList)
                     {
                         comp.DeleteRecordByID(item.Id);

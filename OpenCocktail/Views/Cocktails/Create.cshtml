@@ -8,7 +8,7 @@
 <h2>Créer</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Cocktails", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -38,7 +38,7 @@
             <div class="col-md-10">
                 
                 <img id="new_image" src="@Url.Content("~" + Model.GetPosterURL())" class="poster" />
-                <input type="file" name="FU_Image" id="FU_Image" style="display:none;" onchange="PreLoadImage();" />
+                <input type="file" name="Image" id="FU_Image" style="display:none;" onchange="PreLoadImage();" />
                 <br />
                 <input type="button" class="AvatarBrowseButton" id="uploadTrigger" onclick="document.getElementById('FU_Image').click();" value="Choisir l'Affiche..." />
 
@@ -57,7 +57,7 @@
                         <label>
                             <input type="checkbox" name="Ingredients" value="@item.Id" />
                             @item.Nom
-                            <input type="number" name="@item.Id" value="0" min="1" />
+                            <input type="number" name="@item.Id" value="1" min="1" />
                         </label>
                    <br/>
                     }
