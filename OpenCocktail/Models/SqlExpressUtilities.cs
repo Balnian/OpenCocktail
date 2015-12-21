@@ -336,7 +336,7 @@ namespace SqlExpressUtilities
             QuerySQL(sql);
             if (reader != null)
             {
-                Next();
+                //Next();
                 return true;
             }
             return false;
