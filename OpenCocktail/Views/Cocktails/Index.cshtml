@@ -24,7 +24,10 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
     <tr>
         <td>
             <div class="thumbnail">
@@ -39,11 +42,12 @@
         </td>
         
         <td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Détail", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
+            @Html.ActionLink("Modifier", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Détail", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.Id })
         </td>
     </tr>
+    }
 }
 
 </table>

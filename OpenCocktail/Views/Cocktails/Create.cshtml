@@ -8,10 +8,10 @@
 <h2>Créer</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Cocktail</h4>
         <hr />
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
+
                 <img id="new_image" src="@Url.Content("~" + Model.GetPosterURL())" class="poster" />
                 <input type="file" name="FU_Image" id="FU_Image" style="display:none;" onchange="PreLoadImage();" />
                 <br />
@@ -45,24 +45,30 @@
             </div>
         </div>
 
-        <div class="form-group">            
+        <div class="form-group">
             <label>Ingrédients :</label>
             <br />
             <div class="col-md-10">
                 <div class="checkbox">
-               @{
-                    List<Ingredient> ing = (List<Ingredient>)ViewData["Ingredients"];
-                    foreach (var item in ing)
-                    {
-                        <label>
-                            <input type="checkbox" name="Ingredients" value="@item.Id" />
-                            @item.Nom
-                            <input type="number" name="@item.Id" value="0" min="1" />
-                        </label>
-                   <br/>
+                    @{
+                        List<Ingredient> ing = (List<Ingredient>)ViewData["Ingredients"];
+                        if (ing!=null && ing.Count > 0)
+                        {
+                            foreach (var item in ing)
+                            {
+                                <label>
+                                    <input type="checkbox" name="Ingredients" value="@item.Id" />
+                                    @item.Nom
+                                    <input type="number" name="@item.Id" value="1" min="1" />
+                                </label>
+                                <br />
+                            }
+                        }
+                        else
+                        {
+                            
+                        }
                     }
-                    
-               }
                 </div>
 
             </div>

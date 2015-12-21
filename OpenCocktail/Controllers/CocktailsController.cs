@@ -71,6 +71,7 @@ namespace OpenCocktail.Controllers
                 //Insert Ingredients
                 Ingredients ing = new Ingredients(Session["DB"].ToString());
                 Composants comp = new Composants(Session["DB"].ToString());
+                //if (collection["Ingredients"].ToString().Split(',').Length > 0)
                 foreach (var item in collection["Ingredients"].ToString().Split(','))
 	            {
                     ing.SelectByID(item);
@@ -83,9 +84,9 @@ namespace OpenCocktail.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View(new Cocktail());
+                return RedirectToAction("Index");
             }
         }
 
@@ -130,6 +131,7 @@ namespace OpenCocktail.Controllers
                 comp.SelectByFieldName("Id_Cocktail",cock.Cocktail.Id);
                 List<Composant> compList = comp.ToList();
 
+                //if (collection["Ingredients"] != null)
                 foreach (var item in collection["Ingredients"].ToString().Split(','))
                 {
                     //Si  existe déjà update sinon insert
@@ -154,7 +156,7 @@ namespace OpenCocktail.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }

@@ -36,6 +36,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                    
             <div class="col-md-10">
                 <img id="new_image" src="@Url.Content("~" + Model.GetPosterURL())" class="poster" />
                 <input type="file" name="FU_Image" id="FU_Image" style="display:none;" onchange="PreLoadImage();" />
