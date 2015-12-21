@@ -42,20 +42,37 @@ namespace OpenCocktail.Controllers
         // GET: /Cocktails/Create
         public ActionResult Create()
         {
+            Ingredients ing = new Ingredients(Session["DB"].ToString());
+            ing.SelectAll();
+            ViewData["Ingredients"] = ing.ToList();
             return View(new Cocktail());
         }
 
         //
         // POST: /Cocktails/Create
         [HttpPost]
-        public ActionResult Create(Cocktail collection)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
                 Cocktails cock = new Cocktails(Session["DB"].ToString());
-                cock.Cocktail = collection;
+                cock.Cocktail.Nom = collection["Nom"];
+                cock.Cocktail.Description = collection["Description"];
+                cock.Cocktail.Image = collection["FU_Image"];
                 cock.Cocktail.UpLoadPoster(Request);
                 cock.Insert();
+                cock.SelectLast();
+                Ingredients ing = new Ingredients(Session["DB"].ToString());
+                Composants comp = new Composants(Session["DB"].ToString());
+                foreach (var item in collection["Ingredients"].ToString().Split(','))
+	            {
+                    ing.SelectByID(item);
+
+                    comp.Composant.Id_Ingredient = ing.Ingredient.Id;
+                    comp.Composant.Id_Cocktail = cock.Cocktail.Id;
+                    comp.Composant.Qte = long.Parse(collection[ing.Ingredient.Id.ToString()].ToString());
+                    comp.Insert();
+	            }
 
                 return RedirectToAction("Index");
             }

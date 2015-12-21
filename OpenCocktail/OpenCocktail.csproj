@@ -127,8 +127,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cocktail.cs" />
+    <Compile Include="Models\Composants.cs" />
     <Compile Include="Models\ImageGUIDReference.cs" />
     <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\SQLExpressPatch.cs" />
     <Compile Include="Models\SqlExpressUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -61,3 +61,10 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+
+*.mdf   merge=binary
+*.mdf   diff=binary
+
+*.ldf   merge=binary
+*.ldf   diff=binary
