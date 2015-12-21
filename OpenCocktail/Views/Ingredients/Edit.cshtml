@@ -1,10 +1,10 @@
 ﻿@model OpenCocktail.Models.Ingredient
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Modifier";
 }
 
-<h2>Edit</h2>
+<h2>Modifier</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Ingredient</h4>
+        <h4>Ingrédient</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
@@ -42,7 +42,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste", "Index")
 </div>
 
 @section Scripts {
