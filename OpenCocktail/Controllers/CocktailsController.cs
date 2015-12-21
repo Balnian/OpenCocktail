@@ -59,6 +59,7 @@ namespace OpenCocktail.Controllers
         {
             try
             {
+                //Insert cock
                 Cocktails cock = new Cocktails(Session["DB"].ToString());
                 cock.Cocktail.Nom = collection["Nom"];
                 cock.Cocktail.Description = collection["Description"];
@@ -66,6 +67,8 @@ namespace OpenCocktail.Controllers
                 cock.Cocktail.UpLoadPoster(Request);
                 cock.Insert();
                 cock.SelectLast();
+
+                //Insert Ingredients
                 Ingredients ing = new Ingredients(Session["DB"].ToString());
                 Composants comp = new Composants(Session["DB"].ToString());
                 foreach (var item in collection["Ingredients"].ToString().Split(','))
@@ -82,7 +85,7 @@ namespace OpenCocktail.Controllers
             }
             catch
             {
-                return View(collection);
+                return View(new Cocktail());
             }
         }
 
@@ -90,7 +93,19 @@ namespace OpenCocktail.Controllers
         // GET: /Cocktails/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Cocktails cock = new Cocktails(Session["DB"].ToString());
+            cock.SelectByID(id);
+
+            Composants comp = new Composants(Session["DB"].ToString());
+
+            comp.SelectByFieldName(@"Id_Cocktail", id);
+            ViewData["Comp"] = comp.ToList();
+
+            Ingredients ingrs = new Ingredients(Session["DB"].ToString());
+            ingrs.SelectIngredientsByID(id);
+            ingrs.SelectAll();
+            ViewData["Ingredients"] = ingrs.ToList();
+            return View(cock.Cocktail);
         }
 
         //
@@ -100,6 +115,41 @@ namespace OpenCocktail.Controllers
         {
             try
             {
+                //Insert cock
+                Cocktails cock = new Cocktails(Session["DB"].ToString());
+                cock.Cocktail.Id = id;
+                cock.Cocktail.Nom = collection["Nom"];
+                cock.Cocktail.Description = collection["Description"];
+                cock.Cocktail.Image = collection["FU_Image"];
+                cock.Cocktail.UpLoadPoster(Request);
+                cock.Update();
+
+                //Update Ingredients
+                Ingredients ing = new Ingredients(Session["DB"].ToString());
+                Composants comp = new Composants(Session["DB"].ToString());
+                comp.SelectByFieldName("Id_Cocktail",cock.Cocktail.Id);
+                List<Composant> compList = comp.ToList();
+
+                foreach (var item in collection["Ingredients"].ToString().Split(','))
+                {
+                    //Si  existe déjà update sinon insert
+                    if (compList.Count(X => X.Id_Ingredient == long.Parse(item)) > 0)
+                    {
+                        comp.Composant = compList.Where(X => X.Id_Ingredient == long.Parse(item)).First();
+                        comp.Composant.Qte = long.Parse(collection[item.ToString()].ToString());
+                        comp.Update();
+                    }
+                    else
+                    {
+                        ing.SelectByID(item);
+
+                        comp.Composant.Id_Ingredient = ing.Ingredient.Id;
+                        comp.Composant.Id_Cocktail = cock.Cocktail.Id;
+                        comp.Composant.Qte = long.Parse(collection[ing.Ingredient.Id.ToString()].ToString());
+                        comp.Insert();
+                    }
+                }
+                    
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index");

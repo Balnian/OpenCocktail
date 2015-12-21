@@ -2,20 +2,21 @@
 @using OpenCocktail.Models
 
 @{
-    ViewBag.Title = "Créer";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Créer</h2>
+<h2>Edit</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Cocktail</h4>
         <hr />
         @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nom, new { @class = "control-label col-md-2" })
@@ -36,48 +37,60 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
                 <img id="new_image" src="@Url.Content("~" + Model.GetPosterURL())" class="poster" />
                 <input type="file" name="FU_Image" id="FU_Image" style="display:none;" onchange="PreLoadImage();" />
                 <br />
                 <input type="button" class="AvatarBrowseButton" id="uploadTrigger" onclick="document.getElementById('FU_Image').click();" value="Choisir l'Affiche..." />
-
             </div>
         </div>
 
-        <div class="form-group">            
-            <label>Ingrédients :</label>
-            <br />
+        <div class="form-group">
+            Ingrédients :
             <div class="col-md-10">
                 <div class="checkbox">
-               @{
-                    List<Ingredient> ing = (List<Ingredient>)ViewData["Ingredients"];
-                    foreach (var item in ing)
-                    {
-                        <label>
-                            <input type="checkbox" name="Ingredients" value="@item.Id" />
-                            @item.Nom
-                            <input type="number" name="@item.Id" value="0" min="1" />
-                        </label>
-                   <br/>
+                    @{
+    List<Ingredient> ing = (List<Ingredient>)ViewData["Ingredients"];
+    List<Composant> ingCont = (List<Composant>)ViewData["Comp"];
+    foreach (var item in ing)
+    {
+        if (ingCont.Count(X => X.Id_Ingredient == item.Id)>0)
+        {
+            <label>
+                <input type="checkbox" name="Ingredients" value="@item.Id" checked/>
+                @item.Nom
+                <input type="number" name="@item.Id" value="@ingCont.Where(X => X.Id_Ingredient==item.Id).First().Qte" min="1" />
+            </label>
+                        <br />
+        }
+        else
+        {
+            <label>
+                <input type="checkbox" name="Ingredients" value="@item.Id" />
+                @item.Nom
+                <input type="number" name="@item.Id" value="1" min="1" />
+            </label>
+                        <br />
+        }
+    }
+
                     }
-                    
-               }
                 </div>
 
             </div>
         </div>
 
+
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Créer" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Retour à la liste", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
