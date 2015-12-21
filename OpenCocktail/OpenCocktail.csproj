@@ -172,6 +172,7 @@
     <Content Include="Views\Cocktails\Index.cshtml" />
     <Content Include="Views\Cocktails\Details.cshtml" />
     <Content Include="Views\Cocktails\Create.cshtml" />
+    <Content Include="Views\Cocktails\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
