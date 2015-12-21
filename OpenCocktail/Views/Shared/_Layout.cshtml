@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - OpenCocktail</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,6 +25,7 @@
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     <li>@Html.ActionLink("Cocktails", "Index", "Cocktails")</li>
                     <li>@Html.ActionLink("Ingrédients", "Index", "Ingredients")</li>
+                    <li onclick="aboutBootbox()"><a href="#" onclick="aboutBootbox()">About (BootBox)</a></li>
                 </ul>
             </div>
         </div>
@@ -36,9 +38,65 @@
         </footer>
     </div>
     <script src="~/Scripts/ImgPreview.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
+    <script src="~/Scripts/aboutBootbox.js"></script>
+    
+
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
+    <script type="text/javascript">
+        $().ready(
+            function () {
+                bootbox.dialog({
+                    message: "I am a custom dialog",
+                    title: "Custom title",
+                    buttons: {
+                        success: {
+                            label: "Success!",
+                            className: "btn-success",
+                            callback: function () {
+                                Example.show("great success");
+                            }
+                        },
+                        danger: {
+                            label: "Danger!",
+                            className: "btn-danger",
+                            callback: function () {
+                                Example.show("uh oh, look out!");
+                            }
+                        },
+                        main: {
+                            label: "Click ME!",
+                            className: "btn-primary",
+                            callback: function () {
+                                Example.show("Primary button");
+                            }
+                        }
+                    }
+                });
+            }
+            )
+
+
+        function aboutBootbox() {
+            bootbox.dialog({
+                message: "Site réaliser par Francis Lemaire et Xavier Brosseau dans le cadre du cours 420-KE9 au Collège Lionel-Groulx, selon les directive de Nicolas Chourot.",
+                title: "About",
+                buttons: {
+                    main: {
+                        label: "Click ME!",
+                        className: "btn-primary",
+                        callback: function () {
+                            Example.show("Primary button");
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
