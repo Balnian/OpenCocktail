@@ -182,8 +182,23 @@ namespace OpenCocktail.Controllers
             {
                 if (cock.SelectByID(id))
                 {
+
+                    //Delete composant
+                    Composants comp = new Composants(Session["DB"].ToString());
+                    comp.SelectByFieldName("Id_Cocktail", cock.Cocktail.Id);
+                    List<Composant> compList = comp.ToList();
+
+                    foreach (var item in compList)
+                    {
+                        comp.DeleteRecordByID(item.Id);
+                    }
+
+                    //Delete Cocktail
                     cock.Cocktail = collection;
                     cock.DeleteRecordByID(id);
+
+                    
+
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("Index", "Home");
