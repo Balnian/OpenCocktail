@@ -1,4 +1,4 @@
-﻿@model OpenCocktail.Models.Ingredient
+﻿@model OpenCocktail.Models.Cocktail
 
 @{
     ViewBag.Title = "Supprimer";
@@ -8,7 +8,7 @@
 
 <h3>Êtes-vous sûr de vouloir supprimer ceci?</h3>
 <div>
-    <h4>Ingredient</h4>
+    <h4>Cocktail</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,6 +27,14 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
@@ -34,7 +42,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Supprimer" class="btn btn-default" /> |
-            @Html.ActionLink("Retour à la liste", "Index")
+            @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>

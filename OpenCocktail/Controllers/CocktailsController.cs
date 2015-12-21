@@ -114,24 +114,34 @@ namespace OpenCocktail.Controllers
         // GET: /Cocktails/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Cocktails cock = new Cocktails(Session["DB"].ToString());
+            if (cock.SelectByID(id))
+                return View(cock.Cocktail);
+            else
+                return RedirectToAction("Index");
         }
 
         //
         // POST: /Cocktails/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Cocktail collection)
         {
+            Cocktails cock = new Cocktails(Session["DB"].ToString());
+
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (cock.SelectByID(id))
+                {
+                    cock.Cocktail = collection;
+                    cock.DeleteRecordByID(id);
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index", "Home");
             }
-            catch
+            catch(Exception wat)
             {
-                return View();
-            }
+                return View(collection);
+            }   
         }
     }
 }

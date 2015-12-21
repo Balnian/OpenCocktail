@@ -178,6 +178,7 @@
     <Content Include="Views\Ingredients\Edit.cshtml" />
     <Content Include="Views\Ingredients\Create.cshtml" />
     <Content Include="Views\Ingredients\Delete.cshtml" />
+    <Content Include="Views\Cocktails\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
