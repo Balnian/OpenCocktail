@@ -22,6 +22,8 @@ namespace OpenCocktail.Models
         [RegularExpression(@"^((?!^Name$)[-a-zA-Z0-9 àâäçèêëéìîïòôöùûüÿñÀÂÄÇÈÊËÉÌÎÏÒÔÖÙÛÜ_'])+$", ErrorMessage = "Caractères illégaux.")]
         public String Description { get; set; }
 
+
+
         public Ingredient()
         {
             Nom = "";
@@ -51,9 +53,9 @@ namespace OpenCocktail.Models
             List<Ingredient> Cocktails_list = new List<Ingredient>();
             foreach (Ingredient Cocktail in list)
             {
-                Cocktails_list.Add(Cocktail);
+                Ingredients_list.Add(Ingredient);
             }
-            return Cocktails_list;
+            return Ingredients_list;
         }
     }
 
