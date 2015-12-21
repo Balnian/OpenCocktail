@@ -1,10 +1,10 @@
-﻿@model IEnumerable<OpenCocktail.Models.Cocktail>
+﻿@model IEnumerable<OpenCocktail.Models.Ingredient>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Cocktails</h2>
+<h2>Ingrédients</h2>
 
 <p>
     @Html.ActionLink("Nouveau", "Create")
@@ -12,35 +12,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Nom)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-       
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            <div class="thumbnail">
-                <img src=" @Url.Content(item.GetPosterURL()) " alt=" @Html.DisplayFor(modelItem => item.Nom) " />
-            </div>
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Nom)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        
-        <td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Détail", "Details", new { id=item.Id }) |
+        <td style="font-weight:bold">
+            @Html.ActionLink("Modifier", "Edit", new { id=item.Id })
+            @Html.ActionLink("Détail", "Details", new { id=item.Id })
             @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
         </td>
     </tr>
