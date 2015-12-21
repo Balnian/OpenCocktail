@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Bootbox.JS</id>
+    <version>4.4.0</version>
+    <title>Bootbox.js</title>
+    <authors>Nick Payne, Tieson Trowbridge (NuGet package only)</authors>
+    <owners>Nick Payne, Tieson Trowbridge (NuGet package only)</owners>
+    <licenseUrl>https://github.com/makeusabrew/bootbox/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>http://bootboxjs.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Wrappers for JavaScript alert(), confirm() and other flexible dialogs using Twitter's bootstrap framework.
+
+Bootbox.js requires jQuery 1.9.1 or greater, and Bootstrap 3. This package omits the Bootstrap package dependency to allow for custom Bootstrap builds.</description>
+    <summary>Bootbox.js is a small JavaScript library which allows you to create programmatic dialog boxes using Bootstrap modals.</summary>
+    <releaseNotes>This package omits the Bootstrap package dependency to allow for custom Bootstrap builds (http://getbootstrap.com/customize/) - please include the Modal plugin when creating your custom build.</releaseNotes>
+    <tags>bootbox bootstrap jquery modal dialog</tags>
+    <dependencies>
+      <dependency id="jQuery" version="1.9.1" />
+    </dependencies>
+  </metadata>
+</package>
